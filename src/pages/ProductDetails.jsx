@@ -1,28 +1,31 @@
 import { useParams, useNavigate } from "react-router"
 import Card from "../components/Card.jsx";
 import useFetch from "../hooks/useFetch.js";
+import useBudget from "../hooks/useBudget.js"
 
 function ProductDetails({ productList, fakeEcomUrl }) {
 
     const { id } = useParams();
     const attualeId = parseInt(id);
     const navigate = useNavigate();
+    const { getFilteredProducts } = useBudget();
 
     const product = useFetch(`${fakeEcomUrl}/${attualeId}`);
-    const currentIndex = productList.findIndex(item => {
+    const filteredProduct = getFilteredProducts(productList)
+    const currentIndex = filteredProduct.findIndex(item => {
         return item.id === attualeId
     });
 
     const handlePrevious = () => {
         if (currentIndex > 0) {
-            const previousId = productList[currentIndex - 1].id;
+            const previousId = filteredProduct[currentIndex - 1].id;
             navigate(`/prodotti/${previousId}`);
         }
     };
 
     const handleNext = () => {
-        if (currentIndex < productList.length - 1) {
-            const nextId = productList[currentIndex + 1].id;
+        if (currentIndex < filteredProduct.length - 1) {
+            const nextId = filteredProduct[currentIndex + 1].id;
             navigate(`/prodotti/${nextId}`);
         }
     };
@@ -48,7 +51,7 @@ function ProductDetails({ productList, fakeEcomUrl }) {
                 <button
                     onClick={handleNext}
                     className="btn btn-outline-dark m-2"
-                    disabled={currentIndex >= productList.length - 1 || currentIndex === -1}
+                    disabled={currentIndex >= filteredProduct.length - 1 || currentIndex === -1}
                 >
                     Prossimo →
                 </button>
