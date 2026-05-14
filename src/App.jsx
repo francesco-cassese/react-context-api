@@ -8,6 +8,7 @@ import dreamTeam from "./data/dreamTeam.js";
 import useFetch from "./hooks/useFetch.js";
 import { useEffect, useState } from "react";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import { BudgetContext } from "./context/BudgetContext.jsx";
 
 
 function App() {
@@ -17,29 +18,31 @@ function App() {
   const data = useFetch(fakeEcomUrl);
   if (!data) return <div className="text-center py-5">Caricamento prodotti...</div>;
   return (
-    <BrowserRouter >
-      <Routes>
-        <Route element={<LayoutPage />}>
+    <BudgetContext>
+      <BrowserRouter >
+        <Routes>
+          <Route element={<LayoutPage />}>
 
-          {/* http://localhost:5173/ */}
-          <Route path="" element={<Homepage />} />
+            {/* http://localhost:5173/ */}
+            <Route path="" element={<Homepage />} />
 
-          {/* http://localhost:5173/chi-siamo */}
-          <Route path="chi-siamo" element={<ChiSiamo members={dreamTeam} />} />
+            {/* http://localhost:5173/chi-siamo */}
+            <Route path="chi-siamo" element={<ChiSiamo members={dreamTeam} />} />
 
-          {/* http://localhost:5173/prodotti */}
-          <Route path="prodotti" element={<Prodotti productList={data} />} />
+            {/* http://localhost:5173/prodotti */}
+            <Route path="prodotti" element={<Prodotti productList={data} />} />
 
-          {/* http://localhost:5173/prodotti */}
-          <Route path="prodotti/:id" element={<ProductDetails
-            productList={data}
-            fakeEcomUrl={fakeEcomUrl} />} />
+            {/* http://localhost:5173/prodotti */}
+            <Route path="prodotti/:id" element={<ProductDetails
+              productList={data}
+              fakeEcomUrl={fakeEcomUrl} />} />
 
-        </Route>
-        {/* Pagina non trovata*/}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter >
+          </Route>
+          {/* Pagina non trovata*/}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter >
+    </BudgetContext>
   );
 }
 export default App;
