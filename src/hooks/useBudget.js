@@ -16,11 +16,17 @@ function useBudget() {
         setBudgetMode(!budgetMode);
     };
 
+    const getFilteredProducts = products => {
+        if (!budgetMode) return products;
+
+        return products.filter(product => product.price <= 30);
+    }
 
     return {
         budgetMode,
         setBudgetMode,
-        toggleBudget
+        toggleBudget,
+        getFilteredProducts
     }
 }
 export default useBudget
