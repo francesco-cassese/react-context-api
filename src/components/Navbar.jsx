@@ -1,18 +1,15 @@
 import { Link } from "react-router"
 import useBudget from "../hooks/useBudget"
+import { useState } from "react";
 
 function Navbar() {
     const { maxPrice, setMaxPrice } = useBudget();
+    const [showInput, setShowInput] = useState(false)
 
     const handleChange = event => {
 
-        const value = event.target.value;
+        const { value, checked } = event.target;
 
-        if (value === "") {
-            setMaxPrice(null);
-        } else {
-            setMaxPrice(Number(value));
-        }
     }
 
     return (
@@ -32,19 +29,21 @@ function Navbar() {
                         <li className="nav-item">
                             <Link to="prodotti" className="nav-link fw-bold" >Prodotti</Link>
                         </li>
-                        <li>
-                            <form>
-                                <label htmlFor="number" className="text-white mx-2"> Seleziona il prezzo massimo da visualizzare
-                                    <input
-                                        type="number"
-                                        className="form-control form-control-sm w-auto"
-                                        value={maxPrice}
-                                        onChange={handleChange} />
-                                </label>
-                            </form>
-                        </li>
                     </ul>
                 </div>
+                <button
+                    className={`btn btn-sm ${showInput ? 'btn-warning' : 'btn-outline-light'}`}
+                    onClick={() => setShowInput(!showInput)}
+                >
+                    {showInput ? "Chiudi Filtro" : "Ricerca Avanzata"}
+                </button>
+
+                {showInput &&
+                    <>
+                        <label for="range1" class="form-label text-white">Filtra per prezzo</label>
+                        <input type="range" class="form-range w-25" id="range1"></input>
+                    </>
+                }
             </div>
         </nav>
     )
