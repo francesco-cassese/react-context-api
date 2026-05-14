@@ -8,13 +8,24 @@ function ProductDetails({ productList, fakeEcomUrl }) {
     const { id } = useParams();
     const attualeId = parseInt(id);
     const navigate = useNavigate();
-    const { getFilteredProducts } = useBudget();
+    const { getFilteredProducts, budgetMode } = useBudget();
 
     const product = useFetch(`${fakeEcomUrl}/${attualeId}`);
     const filteredProduct = getFilteredProducts(productList)
     const currentIndex = filteredProduct.findIndex(item => {
         return item.id === attualeId
     });
+
+    if (budgetMode && currentIndex === -1) {
+        return (
+            <>
+                <div className="text-center">
+                    <p>prodotto fuori portata</p>
+                    <button onClick={() => navigate('/prodotti')}> Torna Indietro</button>
+                </div>
+            </>
+        )
+    }
 
     const handlePrevious = () => {
         if (currentIndex > 0) {
@@ -37,6 +48,8 @@ function ProductDetails({ productList, fakeEcomUrl }) {
             </div>
         );
     }
+
+
 
     return (
         <>
