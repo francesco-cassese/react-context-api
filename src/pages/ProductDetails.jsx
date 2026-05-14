@@ -27,9 +27,9 @@ function ProductDetails({ productList, fakeEcomUrl }) {
     if (maxPrice && currentIndex === -1) {
         return (
             <>
-                <div className="text-center">
-                    <p>prodotto fuori portata</p>
-                    <button onClick={() => navigate('/prodotti')}> Torna Indietro</button>
+                <div className="p-5 fw-bold text-center">
+                    <h2 className="fw-bold mb-3">prodotto fuori portata</h2>
+                    <button onClick={() => navigate('/prodotti')} className="btn btn-outline-warning fw-bold px-4 py-2"> Torna Indietro</button>
                 </div>
             </>
         )

@@ -50,7 +50,7 @@ function Navbar() {
                                     type="range"
                                     class="form-range"
                                     id="range1"
-                                    min="0"
+                                    min="1"
                                     max="1000"
                                     value={maxPrice}
                                     onChange={handleChange}
