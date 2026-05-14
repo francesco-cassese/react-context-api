@@ -12,7 +12,6 @@ function Navbar() {
         const sliderValue = Number(value);
 
         setMaxPrice(sliderValue);
-
     }
 
     return (
@@ -35,7 +34,7 @@ function Navbar() {
                     </ul>
                 </div>
                 <button
-                    className={`btn btn-sm ${showInput ? 'btn-warning' : 'btn-outline-light'}`}
+                    className={`btn btn-sm fw-bold border-0 ${showInput ? 'text-warning' : 'text-white-50'}`}
                     onClick={() => setShowInput(!showInput)}
                 >
                     {showInput ? "Chiudi Filtro" : "Filtra per prezzo"}
