@@ -16,6 +16,14 @@ function ProductDetails({ productList, fakeEcomUrl }) {
         return item.id === attualeId
     });
 
+    if (!product) {
+        return (
+            <div className="container py-5 text-center">
+                <h3>Prodotto in caricamento...</h3>
+            </div>
+        );
+    }
+
     if (budgetMode && currentIndex === -1) {
         return (
             <>
@@ -40,16 +48,6 @@ function ProductDetails({ productList, fakeEcomUrl }) {
             navigate(`/prodotti/${nextId}`);
         }
     };
-
-    if (!product) {
-        return (
-            <div className="container py-5 text-center">
-                <h3>Prodotto in caricamento...</h3>
-            </div>
-        );
-    }
-
-
 
     return (
         <>
