@@ -10,22 +10,25 @@ function useBudget() {
         throw new Error('BudgetProvider mancante');
     }
 
-    const { budgetMode, setBudgetMode } = value;
+    const { maxPrice, setMaxPrice } = value;
 
-    const toggleBudget = () => {
-        setBudgetMode(!budgetMode);
-    };
 
     const getFilteredProducts = products => {
-        if (!budgetMode) return products;
 
-        return products.filter(product => product.price <= 30);
+        if (!products) {
+            return products;
+        }
+
+        if (maxPrice === null) {
+            return products;
+        }
+
+        return products.filter(product => product.price <= maxPrice);
     }
 
     return {
-        budgetMode,
-        setBudgetMode,
-        toggleBudget,
+        maxPrice,
+        setMaxPrice,
         getFilteredProducts
     }
 }

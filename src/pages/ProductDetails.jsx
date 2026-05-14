@@ -3,12 +3,12 @@ import Card from "../components/Card.jsx";
 import useFetch from "../hooks/useFetch.js";
 import useBudget from "../hooks/useBudget.js"
 
-function ProductDetails({ productList, fakeEcomUrl }) {
+function ProductDetails({ fakeEcomUrl }) {
 
     const { id } = useParams();
     const attualeId = parseInt(id);
     const navigate = useNavigate();
-    const { getFilteredProducts, budgetMode } = useBudget();
+    const { getFilteredProducts, maxPrice } = useBudget();
 
     const product = useFetch(`${fakeEcomUrl}/${attualeId}`);
     const filteredProduct = getFilteredProducts(productList)
@@ -24,7 +24,7 @@ function ProductDetails({ productList, fakeEcomUrl }) {
         );
     }
 
-    if (budgetMode && currentIndex === -1) {
+    if (maxPrice && currentIndex === -1) {
         return (
             <>
                 <div className="text-center">

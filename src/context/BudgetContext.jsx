@@ -4,11 +4,11 @@ const BudgetContext = createContext(null);
 
 function BudgetProvider({ children }) {
 
-    const [budgetMode, setBudgetMode] = useState(false);
+    const [maxPrice, setMaxPrice] = useState(null);
 
     const value = {
-        budgetMode,
-        setBudgetMode
+        maxPrice,
+        setMaxPrice
     }
 
     return (

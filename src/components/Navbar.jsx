@@ -2,7 +2,18 @@ import { Link } from "react-router"
 import useBudget from "../hooks/useBudget"
 
 function Navbar() {
-    const { budgetMode, toggleBudget } = useBudget();
+    const { maxPrice, setMaxPrice } = useBudget();
+
+    const handleChange = event => {
+
+        const value = event.target.value;
+
+        if (value === "") {
+            setMaxPrice(null);
+        } else {
+            setMaxPrice(Number(value));
+        }
+    }
 
     return (
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -22,11 +33,15 @@ function Navbar() {
                             <Link to="prodotti" className="nav-link fw-bold" >Prodotti</Link>
                         </li>
                         <li>
-                            <button
-                                type="button"
-                                onClick={toggleBudget}>
-                                {budgetMode ? 'Disattiva modalità budget' : 'Attiva modalità budget'}
-                            </button>
+                            <form>
+                                <label htmlFor="number" className="text-white mx-2"> Seleziona il prezzo massimo da visualizzare
+                                    <input
+                                        type="number"
+                                        className="form-control form-control-sm w-auto"
+                                        value={maxPrice}
+                                        onChange={handleChange} />
+                                </label>
+                            </form>
                         </li>
                     </ul>
                 </div>
