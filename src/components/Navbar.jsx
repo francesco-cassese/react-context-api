@@ -35,13 +35,19 @@ function Navbar() {
                     className={`btn btn-sm ${showInput ? 'btn-warning' : 'btn-outline-light'}`}
                     onClick={() => setShowInput(!showInput)}
                 >
-                    {showInput ? "Chiudi Filtro" : "Ricerca Avanzata"}
+                    {showInput ? "Chiudi Filtro" : "Filtra per prezzo"}
                 </button>
 
                 {showInput &&
                     <>
-                        <label for="range1" class="form-label text-white">Filtra per prezzo</label>
-                        <input type="range" class="form-range w-25" id="range1"></input>
+                        <div className="d-flex align-items-center mx-4">
+                            <span className="text-white">Min</span>
+                            <div className="container-range d-flex flex-column m-3">
+                                <label for="range1" class="form-label text-white">Filtra per prezzo</label>
+                                <input type="range" class="form-range" id="range1"></input>
+                            </div>
+                            <span className="text-white">Max</span>
+                        </div>
                     </>
                 }
             </div>
