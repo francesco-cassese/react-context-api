@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 
-const budgetContext = createContext(null);
+const BudgetContext = createContext(null);
 
 function BudgetProvider({ children }) {
 
@@ -8,13 +8,13 @@ function BudgetProvider({ children }) {
 
     const value = {
         budgetMode,
-        setBadgetMode
+        setBudgetMode
     }
 
     return (
-        <BudgetProvider value={value}>
+        <BudgetContext value={value}>
             {children}
-        </BudgetProvider>
+        </BudgetContext>
 
     )
 }

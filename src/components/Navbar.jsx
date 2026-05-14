@@ -1,6 +1,9 @@
 import { Link } from "react-router"
+import useBudget from "../hooks/useBudget"
 
 function Navbar() {
+    const { budgetMode, setBudgetMode } = useBudget();
+
     return (
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
             <div className="container-fluid">
@@ -17,6 +20,12 @@ function Navbar() {
                         </li>
                         <li className="nav-item">
                             <Link to="prodotti" className="nav-link fw-bold" >Prodotti</Link>
+                        </li>
+                        <li>
+                            <button
+                                type="button">
+                                {budgetMode ? 'Disattiva modalità budget' : 'Attiva modalità budget'};
+                            </button>
                         </li>
                     </ul>
                 </div>

@@ -8,7 +8,7 @@ import dreamTeam from "./data/dreamTeam.js";
 import useFetch from "./hooks/useFetch.js";
 import { useEffect, useState } from "react";
 import ProductDetails from "./pages/ProductDetails.jsx";
-import { BudgetContext } from "./context/BudgetContext.jsx";
+import { BudgetProvider } from "./context/BudgetContext.jsx";
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
   const data = useFetch(fakeEcomUrl);
   if (!data) return <div className="text-center py-5">Caricamento prodotti...</div>;
   return (
-    <BudgetContext>
+    <BudgetProvider>
       <BrowserRouter >
         <Routes>
           <Route element={<LayoutPage />}>
@@ -42,7 +42,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter >
-    </BudgetContext>
+    </BudgetProvider>
   );
 }
 export default App;
