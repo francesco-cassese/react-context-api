@@ -8,7 +8,10 @@ function Navbar() {
 
     const handleChange = event => {
 
-        const { value, checked } = event.target;
+        const { value } = event.target;
+        const sliderValue = Number(value);
+
+        setMaxPrice(sliderValue);
 
     }
 
@@ -41,17 +44,27 @@ function Navbar() {
                 {showInput &&
                     <>
                         <div className="d-flex align-items-center mx-4">
-                            <span className="text-white">Min</span>
+                            <span className="badge bg-danger text-white">Min</span>
                             <div className="container-range d-flex flex-column m-3">
-                                <label for="range1" class="form-label text-white">Filtra per prezzo</label>
-                                <input type="range" class="form-range" id="range1"></input>
+                                <label for="range1" class="form-label badge bg-dark">Filtra per prezzo</label>
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    id="range1"
+                                    min="0"
+                                    max="1000"
+                                    value={maxPrice}
+                                    onChange={handleChange}
+                                >
+                                </input>
+                                <span className="badge bg-warning text-dark">{maxPrice}</span>
                             </div>
-                            <span className="text-white">Max</span>
+                            <span className="badge bg-danger">Max</span>
                         </div>
                     </>
                 }
             </div>
-        </nav>
+        </nav >
     )
 }
 export default Navbar
