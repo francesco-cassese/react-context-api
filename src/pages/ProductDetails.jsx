@@ -3,7 +3,7 @@ import Card from "../components/Card.jsx";
 import useFetch from "../hooks/useFetch.js";
 import useBudget from "../hooks/useBudget.js"
 
-function ProductDetails({ fakeEcomUrl }) {
+function ProductDetails({ productList, fakeEcomUrl }) {
 
     const { id } = useParams();
     const attualeId = parseInt(id);

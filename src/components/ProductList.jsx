@@ -11,11 +11,19 @@ function ProductList({ products }) {
 
     const uniqueCategories = [];
     for (let i = 0; i < displayProducts.length; i++) {
-        const currentCategory = products[i].category;
+        const currentCategory = displayProducts[i].category;
 
         if (uniqueCategories.includes(currentCategory) === false) {
             uniqueCategories.push(currentCategory);
         }
+    }
+
+    if (displayProducts.length === 0) {
+        return (
+            <div className="container py-4 text-center">
+                <h3>Nessun prodotto trovato con questo budget.</h3>
+            </div>
+        );
     }
 
     return (
