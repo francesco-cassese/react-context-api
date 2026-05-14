@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import useBudget from "../hooks/useBudget"
 
 function Navbar() {
-    const { budgetMode, setBudgetMode } = useBudget();
+    const { budgetMode, toggleBudget } = useBudget();
 
     return (
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -23,8 +23,9 @@ function Navbar() {
                         </li>
                         <li>
                             <button
-                                type="button">
-                                {budgetMode ? 'Disattiva modalità budget' : 'Attiva modalità budget'};
+                                type="button"
+                                onClick={toggleBudget}>
+                                {budgetMode ? 'Disattiva modalità budget' : 'Attiva modalità budget'}
                             </button>
                         </li>
                     </ul>
