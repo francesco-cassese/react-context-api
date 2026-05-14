@@ -1,11 +1,16 @@
+import useBudget from "../hooks/useBudget";
 import Card from "./Card"
 import { Link } from "react-router";
 
 function ProductList({ products }) {
     console.log('productList', products);
 
+    const { budgetMode } = useBudget();
+
+    const filteredProduct = budgetMode ? products.filter(product => product.price <= 30) : products;
+
     const uniqueCategories = [];
-    for (let i = 0; i < products.length; i++) {
+    for (let i = 0; i < filteredProduct.length; i++) {
         const currentCategory = products[i].category;
 
         if (uniqueCategories.includes(currentCategory) === false) {
@@ -22,7 +27,7 @@ function ProductList({ products }) {
                         {category}
                     </h2>
                     <ul className="row list-unstyled g-4">
-                        {products
+                        {filteredProduct
                             .filter(product => product.category === category)
                             .map(filteredProduct => (
                                 <li key={filteredProduct.id} className="col-12 col-md-6 col-lg-3">
